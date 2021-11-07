@@ -30,7 +30,7 @@ def main():
 
         if result.multi_hand_landmarks:
             for handLandmarks in result.multi_hand_landmarks:
-                mpDraw.draw_landmarks(img, handLandmarks)
+                mpDraw.draw_landmarks(img, handLandmarks, mediapipeHands.HAND_CONNECTIONS)
 
         currentTime = time.time()
         fps = 1 / (currentTime - previousTime)
