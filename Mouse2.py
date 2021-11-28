@@ -6,6 +6,7 @@ import autopy
 def main():
     cap = cv2.VideoCapture(0)
     mediapipeHands = mediapipe.solutions.hands
+    detector =
     hands = mediapipeHands.Hands()
     mpDraw = mediapipe.solutions.drawing_utils
     mpDrawStyle = mediapipe.solutions.drawing_styles
