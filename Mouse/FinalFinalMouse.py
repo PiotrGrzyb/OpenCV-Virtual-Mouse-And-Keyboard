@@ -7,7 +7,7 @@ import HandTrackingModule as htm
 
 wCam, hCam = 640, 480
 frameR = 100
-smoothening = 5
+smoothening = 8
 pTime = 0
 plocX, plocY = 0, 0
 clocX, clocY = 0, 0
@@ -27,7 +27,6 @@ while True:
         x2, y2 = lmList[12][1:]
 
         fingers = detector.fingersUp()
-        #cv2.rectangle(img, (frameR, frameR), (wCam - frameR, hCam - frameR),(255, 0, 255), 2)
         if fingers[1] == 1 and fingers[2] == 0:
             x3 = np.interp(x1, (frameR, wCam - frameR), (0, wScr))
             y3 = np.interp(y1, (frameR, hCam - frameR), (0, hScr))
@@ -47,8 +46,6 @@ while True:
         cTime = time.time()
         fps = 1 / (cTime - pTime)
         pTime = cTime
-        cv2.putText(img, str(int(fps)), (20, 50), cv2.FONT_HERSHEY_PLAIN, 3,
-        (255, 0, 0), 3)
-        # 12. Display
+        cv2.putText(img, str(int(fps)), (20, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
         cv2.imshow("Image", img)
         cv2.waitKey(1)
