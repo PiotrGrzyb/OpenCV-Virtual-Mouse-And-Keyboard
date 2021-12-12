@@ -22,8 +22,6 @@ def main():
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         result = hands.process(imgRGB)
 
-        # If we want to see data that the processors of hands see in terminal
-        # print(result.multi_hand_landmarks)
         if result.multi_hand_landmarks:
             for handLandmarks in result.multi_hand_landmarks:
                 for id, lm in enumerate(handLandmarks.landmark):

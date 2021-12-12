@@ -2,7 +2,7 @@ import cv2
 import time
 import autopy
 import numpy as np
-
+import mouse
 
 import HandTrackingModule as htm
 
@@ -33,19 +33,14 @@ while True:
             y3 = np.interp(y1, (frameR, hCam - frameR), (0, hScr))
             clocX = plocX + (x3 - plocX) / smoothening
             clocY = plocY + (y3 - plocY) / smoothening
-            if (wScr - x3) == wScr:
-                x3 = 1
-            if y3 == hScr:
-                y3 = hScr-1
-            autopy.mouse.move(wScr - x3, y3)
+            mouse.move(1920 - x3, y3)
             cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
             plocX, plocY = clocX, clocY
 
         if fingers[1] == 1 and fingers[2] == 1:
-            length, img, lineInfo = detector.findDistance(8, 12, img)
-            if length < 40:
-                cv2.circle(img, (lineInfo[4], lineInfo[5]), 15, (0, 255, 0), cv2.FILLED)
-                autopy.mouse.click()
+            mouse.click('left')
+        if fingers[2] == 1 and fingers[3] == 1:
+            mouse.click('right')
 
         cTime = time.time()
         fps = 1 / (cTime - pTime)
